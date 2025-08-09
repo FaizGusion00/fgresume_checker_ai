@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -43,9 +44,9 @@ export default function Home() {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
        <motion.div 
-        className="md:col-span-2 flex flex-col space-y-6"
+        className="md:col-span-1 flex flex-col space-y-6"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
@@ -62,7 +63,7 @@ export default function Home() {
       </motion.div>
 
       <motion.div 
-        className="md:col-span-3"
+        className="md:col-span-2"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
