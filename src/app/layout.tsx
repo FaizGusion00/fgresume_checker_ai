@@ -4,10 +4,11 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
+import { FgAiIcon } from '@/components/layout/fg-ai-icon';
 
 export const metadata: Metadata = {
-  title: 'FGResume Checker AI',
-  description: 'AI-powered resume and portfolio analysis',
+  title: 'FGAI Document Analyzer',
+  description: 'AI-powered document analysis',
 };
 
 export default function RootLayout({
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet"></link>
