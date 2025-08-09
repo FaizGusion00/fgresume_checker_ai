@@ -3,22 +3,22 @@
 import { useState } from "react";
 import { getAnalysis } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
-import type { AnalyzeResumeOutput } from "@/ai/flows/analyze-resume";
+import type { AnalyzeDocumentOutput } from "@/ai/flows/analyze-document";
 import FileUploader from "@/components/file-uploader";
 import AnalysisDisplay from "@/components/analysis-display";
 import { motion } from 'framer-motion';
 
 export default function Home() {
-  const [analysisResult, setAnalysisResult] = useState<AnalyzeResumeOutput | null>(null);
+  const [analysisResult, setAnalysisResult] = useState<AnalyzeDocumentOutput | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleAnalyze = async (resumeText: string) => {
-    if (!resumeText.trim()) {
+  const handleAnalyze = async (documentText: string) => {
+    if (!documentText.trim()) {
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Resume content cannot be empty.",
+        description: "Document content cannot be empty.",
       });
       return;
     }
@@ -26,7 +26,7 @@ export default function Home() {
     setIsLoading(true);
     setAnalysisResult(null);
 
-    const { data, error } = await getAnalysis(resumeText);
+    const { data, error } = await getAnalysis(documentText);
 
     if (error) {
       toast({
@@ -52,10 +52,10 @@ export default function Home() {
        >
         <div className="space-y-2">
           <h1 className="text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-pink-500">
-            Elevate Your Resume
+            Elevate Your Documents
           </h1>
           <p className="text-muted-foreground text-lg">
-            Paste your resume or upload a file. Our AI will provide instant feedback to help you land your dream job.
+            Paste your document or upload a file. Our AI will provide instant feedback to help you improve it.
           </p>
         </div>
         <FileUploader onAnalyze={handleAnalyze} isLoading={isLoading} />

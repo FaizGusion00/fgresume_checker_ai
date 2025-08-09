@@ -15,6 +15,9 @@ interface FileUploaderProps {
   isLoading: boolean;
 }
 
+const MAX_FILE_SIZE_MB = 2;
+const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+
 export default function FileUploader({ onAnalyze, isLoading }: FileUploaderProps) {
   const [text, setText] = useState('');
   const [isDragging, setIsDragging] = useState(false);
@@ -35,6 +38,15 @@ export default function FileUploader({ onAnalyze, isLoading }: FileUploaderProps
   
   const handleFile = useCallback(async (file: File | null) => {
     if (!file) return;
+
+    if (file.size > MAX_FILE_SIZE_BYTES) {
+      toast({
+        variant: 'destructive',
+        title: 'File Too Large',
+        description: `Please upload a file smaller than ${MAX_FILE_SIZE_MB}MB.`,
+      });
+      return;
+    }
 
     if (file.type === 'application/pdf') {
       try {
@@ -109,7 +121,7 @@ export default function FileUploader({ onAnalyze, isLoading }: FileUploaderProps
           <p className="mt-4 text-muted-foreground">
             <span className="font-semibold text-primary">Click to upload</span> or drag and drop
           </p>
-          <p className="text-xs text-muted-foreground">PDF or TXT files</p>
+          <p className="text-xs text-muted-foreground">PDF or TXT files (Max {MAX_FILE_SIZE_MB}MB)</p>
         </CardContent>
         <input
           ref={fileInputRef}
@@ -121,16 +133,16 @@ export default function FileUploader({ onAnalyze, isLoading }: FileUploaderProps
       </Card>
 
       <Textarea
-        placeholder="Or paste your resume here..."
+        placeholder="Or paste your document here..."
         value={text}
         onChange={(e) => setText(e.target.value)}
         rows={15}
         className="bg-transparent focus:bg-card/50 transition-colors"
-        aria-label="Resume text input"
+        aria-label="Document text input"
       />
       <Button onClick={() => onAnalyze(text)} disabled={isLoading || !text} size="lg" className="w-full font-bold text-lg bg-primary hover:bg-primary/90 transition-all duration-300 transform hover:scale-105">
         {isLoading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : null}
-        {isLoading ? 'Analyzing...' : 'Analyze Resume'}
+        {isLoading ? 'Analyzing...' : 'Analyze Document'}
       </Button>
     </div>
   );

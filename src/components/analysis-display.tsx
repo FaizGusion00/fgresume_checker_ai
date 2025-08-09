@@ -1,6 +1,6 @@
 "use client";
 
-import type { AnalyzeResumeOutput } from "@/ai/flows/analyze-resume";
+import type { AnalyzeDocumentOutput } from "@/ai/flows/analyze-document";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -8,7 +8,7 @@ import { ScoreCircle } from "./score-circle";
 import { BarChart, Lightbulb, FileText } from "lucide-react";
 
 interface AnalysisDisplayProps {
-  result: AnalyzeResumeOutput | null;
+  result: AnalyzeDocumentOutput | null;
   isLoading: boolean;
 }
 
@@ -41,7 +41,7 @@ export default function AnalysisDisplay({ result, isLoading }: AnalysisDisplayPr
         <CardContent className="flex flex-col items-center justify-center">
           <ScoreCircle score={result.score} />
           <p className="mt-4 text-center text-muted-foreground max-w-sm">
-            This score reflects your resume's effectiveness based on content, structure, and clarity.
+            This score reflects your document's effectiveness based on content, structure, and clarity.
           </p>
         </CardContent>
       </Card>
