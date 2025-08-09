@@ -20,7 +20,7 @@ export type AnalyzeDocumentInput = z.infer<typeof AnalyzeDocumentInputSchema>;
 
 const AnalyzeDocumentOutputSchema = z.object({
   analysis: z.string().describe("The AI's analysis of the document's content, structure, and overall quality."),
-  suggestions: z.string().describe("Actionable suggestions for improving the document."),
+  suggestions: z.array(z.string()).describe("A list of actionable suggestions for improving the document."),
   score: z.number().describe("A summary score representing the document's overall effectiveness."),
 });
 export type AnalyzeDocumentOutput = z.infer<typeof AnalyzeDocumentOutputSchema>;
@@ -33,7 +33,7 @@ const prompt = ai.definePrompt({
   name: 'analyzeDocumentPrompt',
   input: {schema: AnalyzeDocumentInputSchema},
   output: {schema: AnalyzeDocumentOutputSchema},
-  prompt: `You are an expert document analyst. Analyze the following document text and provide an analysis of its content, structure, and overall quality. Also, provide actionable suggestions for improvement to make it more effective. Finally, provide an overall effectiveness score between 0 and 100.
+  prompt: `You are an expert document analyst. Analyze the following document text and provide an analysis of its content, structure, and overall quality. Also, provide a list of actionable suggestions for improvement to make it more effective. Finally, provide an overall effectiveness score between 0 and 100.
 
 Document Text:
 {{{documentText}}}`,

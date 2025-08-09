@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ScoreCircle } from "./score-circle";
-import { BarChart, Lightbulb, FileText } from "lucide-react";
+import { BarChart, Lightbulb, FileText, CheckCircle2 } from "lucide-react";
 
 interface AnalysisDisplayProps {
   result: AnalyzeDocumentOutput | null;
@@ -65,8 +65,15 @@ export default function AnalysisDisplay({ result, isLoading }: AnalysisDisplayPr
               Actionable Suggestions
             </div>
           </AccordionTrigger>
-          <AccordionContent className="text-base text-foreground/80 leading-relaxed p-4 pt-0">
-            {result.suggestions}
+          <AccordionContent className="p-4 pt-0">
+            <ul className="space-y-3">
+              {result.suggestions.map((suggestion, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-green-400 mt-1 flex-shrink-0" />
+                  <span className="text-base text-foreground/80">{suggestion}</span>
+                </li>
+              ))}
+            </ul>
           </AccordionContent>
         </AccordionItem>
       </Accordion>
