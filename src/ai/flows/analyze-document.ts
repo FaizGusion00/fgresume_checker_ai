@@ -14,18 +14,32 @@ import {z} from 'genkit';
 const AnalyzeDocumentInputSchema = z.object({
   documentText: z
     .string()
-    .describe("The text content of the document to be analyzed."),
+    .describe('The text content of the document to be analyzed.'),
 });
 export type AnalyzeDocumentInput = z.infer<typeof AnalyzeDocumentInputSchema>;
 
+const AnalysisDetailsSchema = z.object({
+    content: z.string().describe("Analysis of the document's content quality and relevance."),
+    structure: z.string().describe("Analysis of the document's structure, formatting, and flow."),
+    clarity: z.string().describe("Analysis of the document's clarity, conciseness, and language."),
+});
+
 const AnalyzeDocumentOutputSchema = z.object({
-  analysis: z.string().describe("The AI's analysis of the document's content, structure, and overall quality."),
-  suggestions: z.array(z.string()).describe("A list of actionable suggestions for improving the document."),
-  score: z.number().describe("A summary score representing the document's overall effectiveness."),
+  analysis: AnalysisDetailsSchema.describe("The AI's detailed analysis of the document, broken down by category."),
+  suggestions: z
+    .array(z.string())
+    .describe('A list of actionable suggestions for improving the document.'),
+  score: z
+    .number()
+    .describe(
+      "A summary score representing the document's overall effectiveness."
+    ),
 });
 export type AnalyzeDocumentOutput = z.infer<typeof AnalyzeDocumentOutputSchema>;
 
-export async function analyzeDocument(input: AnalyzeDocumentInput): Promise<AnalyzeDocumentOutput> {
+export async function analyzeDocument(
+  input: AnalyzeDocumentInput
+): Promise<AnalyzeDocumentOutput> {
   return analyzeDocumentFlow(input);
 }
 
@@ -33,7 +47,10 @@ const prompt = ai.definePrompt({
   name: 'analyzeDocumentPrompt',
   input: {schema: AnalyzeDocumentInputSchema},
   output: {schema: AnalyzeDocumentOutputSchema},
-  prompt: `You are an expert document analyst. Analyze the following document text and provide an analysis of its content, structure, and overall quality. Also, provide a list of actionable suggestions for improvement to make it more effective. Finally, provide an overall effectiveness score between 0 and 100.
+  prompt: `You are an expert document analyst. Analyze the following document text.
+Provide a detailed analysis for each of the following categories: content, structure, and clarity.
+Also, provide a list of actionable suggestions for improvement to make it more effective.
+Finally, provide an overall effectiveness score between 0 and 100.
 
 Document Text:
 {{{documentText}}}`,

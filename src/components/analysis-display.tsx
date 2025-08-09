@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScoreCircle } from "./score-circle";
-import { BarChart, Lightbulb, FileText, CheckCircle2 } from "lucide-react";
+import { BarChart, Lightbulb, FileText, CheckCircle2, BookOpen, Scaling, Pencil } from "lucide-react";
 
 interface AnalysisDisplayProps {
   result: AnalyzeDocumentOutput | null;
@@ -30,6 +30,24 @@ export default function AnalysisDisplay({ result, isLoading }: AnalysisDisplayPr
       </Card>
     );
   }
+
+  const analysisItems = [
+    {
+      title: "Content",
+      icon: BookOpen,
+      text: result.analysis.content,
+    },
+    {
+      title: "Structure",
+      icon: Scaling,
+      text: result.analysis.structure,
+    },
+    {
+      title: "Clarity",
+      icon: Pencil,
+      text: result.analysis.clarity,
+    },
+  ];
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -60,12 +78,18 @@ export default function AnalysisDisplay({ result, isLoading }: AnalysisDisplayPr
               Suggestions
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="analysis" className="mt-4">
-             <Card className="bg-card/50">
-                <CardContent className="p-6">
-                  <p className="text-base text-foreground/80 leading-relaxed">{result.analysis}</p>
-                </CardContent>
-              </Card>
+          <TabsContent value="analysis" className="mt-4 space-y-4">
+             {analysisItems.map((item, index) => (
+                <Card key={index} className="bg-card/50">
+                  <CardHeader className="flex flex-row items-center gap-3 space-y-0 pb-2">
+                     <item.icon className="h-6 w-6 text-primary" />
+                     <CardTitle className="text-xl font-semibold">{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-base text-foreground/80 leading-relaxed">{item.text}</p>
+                  </CardContent>
+                </Card>
+             ))}
           </TabsContent>
           <TabsContent value="suggestions" className="mt-4">
             <Card className="bg-card/50">
@@ -105,7 +129,9 @@ function LoadingSkeleton() {
         </div>
         <div className="lg:col-span-2 space-y-4">
             <Skeleton className="h-10 w-full rounded-lg bg-muted/50" />
-            <Skeleton className="h-48 w-full rounded-lg bg-muted/50" />
+            <Skeleton className="h-24 w-full rounded-lg bg-muted/50" />
+            <Skeleton className="h-24 w-full rounded-lg bg-muted/50" />
+            <Skeleton className="h-24 w-full rounded-lg bg-muted/50" />
         </div>
     </div>
   );
