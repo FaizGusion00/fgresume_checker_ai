@@ -6,8 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import type { AnalyzeResumeOutput } from "@/ai/flows/analyze-resume";
 import FileUploader from "@/components/file-uploader";
 import AnalysisDisplay from "@/components/analysis-display";
-import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { motion } from 'framer-motion';
 
 export default function Home() {
   const [analysisResult, setAnalysisResult] = useState<AnalyzeResumeOutput | null>(null);
@@ -44,18 +43,32 @@ export default function Home() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-12">
-      <div className="flex flex-col space-y-6">
-        <h1 className="text-3xl font-bold text-primary">Upload Your Resume</h1>
-        <p className="text-muted-foreground">
-          Paste your resume text or upload a .txt or .pdf file. Our AI will provide instant feedback to help you land your dream job.
-        </p>
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+       <motion.div 
+        className="md:col-span-2 flex flex-col space-y-6"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+       >
+        <div className="space-y-2">
+          <h1 className="text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-pink-500">
+            Elevate Your Resume
+          </h1>
+          <p className="text-muted-foreground text-lg">
+            Paste your resume or upload a file. Our AI will provide instant feedback to help you land your dream job.
+          </p>
+        </div>
         <FileUploader onAnalyze={handleAnalyze} isLoading={isLoading} />
-      </div>
+      </motion.div>
 
-      <div className="mt-8 lg:mt-0">
+      <motion.div 
+        className="md:col-span-3"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <AnalysisDisplay result={analysisResult} isLoading={isLoading} />
-      </div>
+      </motion.div>
     </div>
   );
 }

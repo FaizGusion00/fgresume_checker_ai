@@ -97,7 +97,7 @@ export default function FileUploader({ onAnalyze, isLoading }: FileUploaderProps
   return (
     <div className="space-y-4">
       <Card
-        className={`border-2 border-dashed transition-colors ${isDragging ? 'border-primary bg-accent/10' : 'border-border'}`}
+        className={`border-2 border-dashed transition-all duration-300 ${isDragging ? 'border-primary bg-primary/10 scale-105' : 'border-border hover:border-primary/50'}`}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
@@ -125,11 +125,11 @@ export default function FileUploader({ onAnalyze, isLoading }: FileUploaderProps
         value={text}
         onChange={(e) => setText(e.target.value)}
         rows={15}
-        className="bg-card"
+        className="bg-transparent focus:bg-card/50 transition-colors"
         aria-label="Resume text input"
       />
-      <Button onClick={() => onAnalyze(text)} disabled={isLoading || !text} className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-        {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+      <Button onClick={() => onAnalyze(text)} disabled={isLoading || !text} size="lg" className="w-full font-bold text-lg bg-primary hover:bg-primary/90 transition-all duration-300 transform hover:scale-105">
+        {isLoading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : null}
         {isLoading ? 'Analyzing...' : 'Analyze Resume'}
       </Button>
     </div>
