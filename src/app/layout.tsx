@@ -7,8 +7,8 @@ import Footer from '@/components/layout/footer';
 import { FgAiIcon } from '@/components/layout/fg-ai-icon';
 
 export const metadata: Metadata = {
-  title: 'FGAI Document Analyzer',
-  description: 'AI-powered document analysis',
+  title: 'FGResume Checker AI',
+  description: 'AI-powered resume analysis and enhancement',
 };
 
 export default function RootLayout({
