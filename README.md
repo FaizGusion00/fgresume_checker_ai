@@ -25,34 +25,6 @@ This project is built with a modern, robust tech stack:
 -   **Animations:** [Framer Motion](https://www.framer.com/motion/)
 -   **Deployment:** [Firebase App Hosting](https://firebase.google.com/docs/app-hosting)
 
-## 🚀 Getting Started
-
-To get a local copy up and running, follow these simple steps.
-
-### Prerequisites
-
-You need to have [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) installed on your machine.
-
-### Installation
-
-1.  Clone the repo:
-    ```sh
-    git clone https://github.com/your-username/your-repo-name.git
-    ```
-2.  Install NPM packages:
-    ```sh
-    npm install
-    ```
-3.  Set up your environment variables. Create a `.env` file in the root of the project and add your Gemini API key:
-    ```env
-    GEMINI_API_KEY=YOUR_API_KEY
-    ```
-4.  Run the development server:
-    ```sh
-    npm run dev
-    ```
-    Open [http://localhost:9002](http://localhost:9002) with your browser to see the result.
-
 ## 📄 License
 
 This project is privately owned and is not open for contributions. All rights are reserved.
