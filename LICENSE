@@ -1,12 +1,17 @@
 Copyright (c) 2024 FGCompany Official
 
-All Rights Reserved.
+All rights reserved.
 
-This software and its documentation are the confidential and proprietary property
-of FGCompany Official.
+This project and its source code are the confidential and proprietary property of FGCompany Official ("the Company"). Unauthorized copying, distribution, or use of this software, in whole or in part, is strictly prohibited.
 
-Permission to use, copy, modify, distribute, or sublicense this software is strictly
-prohibited without the prior written consent of FGCompany Official. Unauthorized
-use, reproduction, or distribution of this software, or any portion of it, may
-result in severe civil and criminal penalties, and will be prosecuted to the
-maximum extent possible under the law.
+Permission is hereby granted to the individual or entity to whom this software was provided ("the Recipient") to use the software for internal evaluation purposes only. The Recipient may not:
+
+1.  Modify, adapt, translate, or create derivative works based on the software.
+2.  Reverse engineer, decompile, disassemble, or otherwise attempt to discover the source code of the software.
+3.  Rent, lease, sell, sublicense, assign, or transfer rights in the software.
+4.  Remove any proprietary notices or labels on the software.
+
+This software is provided "AS IS", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement. In no event shall the authors or copyright holders be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the software or the use or other dealings in the software.
+
+Developed by: Faiz Nasir
+Owned by: FGCompany Official
